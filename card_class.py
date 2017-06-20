@@ -3,7 +3,7 @@ import random
 
 class Card:
     def __init__(self, val, suit):
-        self.val = val
+        self.val = str(val)
         self.suit = suit
         if(suit == "H" or suit == "D"):
             self.color = "RED"
@@ -22,13 +22,13 @@ class Card:
         return "%s%s" % (self.val, suitSym)
 
 class Deck:
-    def __init__(self):
+    def __init__(self, CardClass):
         vals = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
         suits = ['H','S','D','C']
         self.stack = []
         for val in vals:
             for suit in suits:
-                self.stack.append(Card(val, suit))
+                self.stack.append(CardClass(val, suit))
         random.shuffle(self.stack)
     def __len__(self):
         return len(self.stack)
@@ -38,6 +38,5 @@ class Deck:
         return self.stack.pop()
 
 
-deck = Deck()
+deck = Deck(Card)
 print(deck.deal())
-print([].pop())
