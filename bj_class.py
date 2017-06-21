@@ -8,12 +8,18 @@ class BjCard(Card):
         ace = False
         if self.val == 'A' or other.val == 'A':
             ace = True
-        subtotal = card_values[self.val] + card_values[other.val]
+        try:
+            subtotal = card_values[self.val] + card_values[other.val]
+        except KeyError:
+            subtotal = card_values[self.val] + int(other.val)
         if subtotal > 21 and ace:
             subtotal -= 10 # Ace changes value from 11 to 1
         return subtotal
     def __radd__(self, other):
-        return self.__add__(BjCard(other, 'H'))
+        if other == 11:
+            return self.__add__(BjCard('A','H'))
+        else:
+            return self.__add__(BjCard(other, 'H'))
 
 deck = Deck(BjCard)
 card1 = deck.deal()
