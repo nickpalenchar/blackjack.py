@@ -20,10 +20,5 @@ class BjCard(Card):
             return self.__add__(BjCard('A','H'))
         else:
             return self.__add__(BjCard(other, 'H'))
-
-deck = Deck(BjCard)
-card1 = deck.deal()
-card2 = deck.deal()
-card3 = deck.deal()
-
-print("%s, %s, %s\n %d" % (card1, card2, card3, card1 + card2 + card3))
+    def __str__(self):
+        return super(BjCard, self).__str__()
