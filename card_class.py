@@ -36,7 +36,3 @@ class Deck:
         if(not len(self)):
             return None
         return self.stack.pop()
-
-
-deck = Deck(Card)
-print(deck.deal())
